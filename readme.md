@@ -15,7 +15,7 @@
 
 ## 总体介绍
 
-![alt text](images/MQTE.jpg)
+![alt text](./images/MQTE.jpg)
 
 本次大作业主要使用Bert预训练模型 $^{[1]}$ 搭建基于transformer架构 $^{[2]}$ 的MTQE模型以评估机器翻译的质量，更具体的说，模型能在词级别上实现对每个词质量（dtag）的标注。
 
@@ -126,17 +126,17 @@ python main.py --data_dir "./resource/data" --model_path "./results" --logs_path
 
 第一次训练中， `epochs` 参数设为20、 `batch_size` 参数设为32、 `max_len` 参数设为128，模型参数量在0.2B左右，在使用NVIDIA RTX A6000单卡进行实验的情况下总耗时大致在4小时左右。最终的训练结果在验证集上（词dtag等级）达到了**92.7%** 的准确率。下图为 `epoch=20, max_len=128` 训练过程中的loss曲线和acc曲线。
 
-![alt text](images/training_plots1.png)
+![alt text](./images/training_plots1.png)
 
 可以发现，可能是使用bert预训练模型的原因，在初始epoch=0时的验证结果准确率就能达到 **87.2%** ，后续的训练中loss下降的幅度逐渐放缓，虽然最后训练结果似乎没有完全收敛，但是增幅也基本可忽略不计，特别是在最后5个epoch中acc的增长率不到0.5%。
 
 由于后续在测试过程中发现测试集中有样本的序列长度超过了128（如下图），而由于之前 `max_len` 的限制，模型最多只能预测序列长度为128的样本，因此后面只能增大 `max_len` 重新训练。
 
-![alt text](images/error.png)
+![alt text](./images/error.png)
 
 第二次训练中，`epochs` 参数设为30、 `batch_size` 参数设为32、 `max_len` 参数设为256，还是在使用NVIDIA RTX A6000单卡进行实验的情况下总耗时大致在11个小时左右。最终训练结果在验证集上达到了 **93.5%** 的准确率。下图为 `epoch=30, max_len=256` 训练过程中的loss曲线和acc曲线。
 
-![alt text](images/training_plots2.png)
+![alt text](./images/training_plots2.png)
 
 ## 测试模型
 
@@ -152,11 +152,11 @@ $$
 \mathrm{MQM}=1-\frac{n_\mathrm{minor}+5n_\mathrm{major}+10n_\mathrm{critical}}n
 $$
 
-![alt text](images/test_result.png)
+![alt text](./images/test_result.png)
 
 如下图，最终结果使用 `eval_script.py` 可通过测试样例。
 
-![alt text](images/eval_result.png)
+![alt text](./images/eval_result.png)
 
 ## 参考文献
 
