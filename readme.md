@@ -15,7 +15,7 @@
 
 ## 总体介绍
 
-![alt text](./images/MQTE.jpg)
+![]{images/MQTE.jpg}
 
 本次大作业主要使用Bert预训练模型 $^{[1]}$ 搭建基于transformer架构 $^{[2]}$ 的MTQE模型以评估机器翻译的质量，更具体的说，模型能在词级别上实现对每个词质量（dtag）的标注。
 
